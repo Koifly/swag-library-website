@@ -1,0 +1,121 @@
+html { height: 100%; }
+
+@font-face {
+    font-family: 'germanica';
+    src: url("./germanica/Plain Germanica.ttf");
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url("./another-typewriter/atwriter.ttf");
+}
+
+body {
+    --color-container: rgba(224, 224, 224, 0.9);;
+    --color-primary: #547D5B;
+    --color-primary-dark: #345239;
+    --border-radius: 4px;
+
+    margin: 0;
+    font-size: 18px;
+    background: url(./background.jpg);
+    background-size: cover;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 0.4fr 0.5fr 3.1fr 0.2fr;
+    grid-template-rows: 0.2fr 2.6fr 0.2fr;
+    gap: 10px;
+    padding: 10px;
+    grid-auto-flow: row;
+    align-items: center; 
+    grid-template-areas:
+    "logo header header header"
+    "search search main main"
+    "search search main main"
+    "search search main main"
+    "search search main main"
+    "search search main main"
+    "footer footer footer footer";
+}
+
+.logo {
+    grid-area: logo;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(./open-book.png);
+    aspect-ratio: 1;
+}
+
+.header {
+    grid-area: header;
+    text-align: left;
+    font-family: germanica;
+    font-size: 100px;
+    color: white;
+}
+
+.search {
+    grid-area: search;
+    text-align: left;
+    height: 100%;
+    float: right;
+
+    font-family: typewriter;
+}
+
+.search button {
+    color: #ffffff;
+    float: right;
+    padding: 7px 7px;
+    margin-right: 20px;
+    background-color: var(--color-primary);
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.search button:hover {
+    background: var(--color-primary-dark);
+}
+
+.search input[type=text] {
+    width: 300px;
+    height: 25px;
+    border-radius: 25px;
+    border: none;
+
+    font-family: typewriter;
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--color-container);
+
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    text-indent: 10px;
+    height: 100%;
+
+    font-family: typewriter;
+}
+
+.footer {
+    grid-area: footer;
+    background-color: var(--color-container);
+
+    border-radius: var(--border-radius);
+    border: 1px solid #dddddd;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    text-indent: 10px;
+    height: 100%;
+
+    font-family: typewriter;
+    font-size: 12px;
+}
