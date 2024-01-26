@@ -1,3 +1,5 @@
+var TOKEN = "swag";
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".form__message");
 
@@ -25,8 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
 
-        location.replace("../home_page/home.html");
-
-        // setFormMessage(loginForm, "error", "Invalid username/password combination");
+        // INSECURE: will need changing
+        if(document.getElementById('token').value == TOKEN) {
+            location.replace("../home_page/home.html");
+        }
     });
 });

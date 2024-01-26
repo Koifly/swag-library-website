@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +10,62 @@
 <body>
 
 <div class="container">
-    <div class="header">
+    <header class="header">
+        <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn"><i class="fa fa-bars" style="font-size: 30px;"></i></button>
+            <div id="menu" class="dropdown-content">
+                <li class="menuli"><a>Novels</a>
+                    <ul class="sub-content">
+                        <a href="#horror">Horror</a>
+                        <a href="#horror">Fantasy</a>
+                        <a href="#horror">Science-Fiction</a>
+                        <a href="#horror">Romance</a>
+                        <a href="#horror">Y/A</a>
+                        <a href="#horror">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="#manga">Manga</a>
+                    <ul class="sub-content">
+                        <a href="#horror">Horror</a>
+                        <a href="#horror">Comedy</a>
+                        <a href="#horror">Shounen</a>
+                        <a href="#horror">Shoujo</a>
+                        <a href="#horror">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="#manga">Comics</a>
+                    <ul class="sub-content">
+                        <a href="#horror">Batman</a>
+                        <a href="#horror">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="#manga">Non-Fiction</a>
+                    <ul class="sub-content">
+                        <a href="#horror">History</a>
+                        <a href="#horror">Politics</a>
+                        <a href="#horror">Technology</a>
+                        <a href="#horror">Philosophy</a>
+                        <a href="#horror">Other</a>
+                    </ul>
+                </li>
+                <a href="#all" class="split">All books</a>
+            </div>
+        </div> 
         <div class="search">
             <input type="text" placeholder="Search books...">
-            <button><i class="fa fa-search icon" style="font-size: 18px;"></i></button>
+            <button type="submit"><i class="fa fa-search icon" style="font-size: 18px;"></i></button>
+        </div>
+    </header>
+    <div class="image"></div>
+    <div class="main">
+        <div class="text-container">
+            <h1>Welcome to the Library</h1>
+            <p>This is some text.</p>
+            <button class="text-button" style="position: absolute;bottom: 30px;">Add a book</button>
         </div>
     </div>
-    <div class="image"></div>
-    <div class="main"></div>
 </div>
 
+<script src="./src/main.js"></script>
 </body>
 </html>
