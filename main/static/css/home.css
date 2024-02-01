@@ -1,0 +1,38 @@
+@import "./assets/assets.css";
+@import "./assets/buttons.css";
+
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+.container_home {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 59px 0.5fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "header"
+        "image"
+        "main";
+   height: 100%;
+}
+
+.container_list {
+    display: grid; 
+    grid-template-columns: 1fr; 
+    grid-template-rows: 59px 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        "header"
+        "main";
+   height: 100%;
+}
+
+.image {
+    grid-area: image;
+    aspect-ratio: 256/103; 
+    background-image: url(./background.png);
+    background-size: contain;
+    max-height: 700px;
+}

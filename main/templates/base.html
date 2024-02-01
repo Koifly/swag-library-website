@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{% load static%}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+
+<div class="container_{% block container %}{% endblock %}">
+    <header class="header">
+        <div class="dropdown">
+            <button onclick="dropdown()" class="dropbtn"><i class="fa fa-bars" style="font-size: 30px;"></i></button>
+            <div id="menu" class="dropdown-content">
+                <li class="menuli"><a href="novels">Novels</a>
+                    <ul class="sub-content">
+                        <a href="#novel-horror">Horror</a>
+                        <a href="#novel-fantasy">Fantasy</a>
+                        <a href="#novel-scifi">Science-Fiction</a>
+                        <a href="#novel-romance">Romance</a>
+                        <a href="#novel-ya">Y/A</a>
+                        <a href="#novel-other">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="manga">Manga</a>
+                    <ul class="sub-content">
+                        <a href="#manga-horror">Horror</a>
+                        <a href="#manga-comedy">Comedy</a>
+                        <a href="#manga-shounen">Shounen</a>
+                        <a href="#manga-shoujo">Shoujo</a>
+                        <a href="#manga-other">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="comics">Comics</a>
+                    <ul class="sub-content">
+                        <a href="#comic-batman">Batman</a>
+                        <a href="#comic-other">Other</a>
+                    </ul>
+                </li>
+                <li class="menuli"><a href="nonfic">Non-Fiction</a>
+                    <ul class="sub-content">
+                        <a href="#nonfic-history">History</a>
+                        <a href="#nonfic-politics">Politics</a>
+                        <a href="#nonfic-tech">Technology</a>
+                        <a href="#nonfic-philosophy">Philosophy</a>
+                        <a href="#nonfic-other">Other</a>
+                    </ul>
+                </li>
+                <a href="all" class="split">All books</a>
+            </div>
+        </div> 
+        <div class="search">
+            <input type="text" placeholder="Search books...">
+            <button type="submit"><i class="fa fa-search icon" style="font-size: 18px;"></i></button>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+</div>
+<script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive&display=swap');
+
+:root {
+    /*Colour Palette*/
+    --main-green: #3A593C;
+    --secondary-green: #A4B494;
+    --main-grey: #E1E4D8;
+    --accent-blue: #6C91C2;
+    --accent-red: #BF8B85;
+}
+
+.header {
+	grid-area: header;
+	height: 59px;
+	background: var(--main-green);
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--main-grey);
+    min-height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-container {
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    width: 90%;
+    min-height: 90%;
+    padding: 10px;
+
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+    font-family: 'Recursive', sans-serif;
+}

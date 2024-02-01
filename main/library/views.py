@@ -1,5 +1,26 @@
+import os
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.template import loader
 
+
+def get_list_type(request):
+    path = request.path
+    list_type = os.path.basename(os.path.normpath(path))
+    return list_type
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return render(request, "home.html")
+
+def login(request):
+	return HttpResponse("This will be the log in page.")
+
+def list(request):
+	template = loader.get_template('list.html')
+
+	list_type = get_list_type(request)
+	title = list_type.capitalize()
+	context = {
+	'title' : title
+	}
+	return HttpResponse(template.render(context, request))
