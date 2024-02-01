@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // INSECURE: will need changing
         if(document.getElementById('token').value == TOKEN) {
-            location.replace("../home_page/home.html");
+            location.replace("library");
         }
     });
 });

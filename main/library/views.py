@@ -13,7 +13,7 @@ def home(request):
     return render(request, "home.html")
 
 def login(request):
-	return HttpResponse("This will be the log in page.")
+	return render(request, "login.html")
 
 def list(request):
 	template = loader.get_template('list.html')
