@@ -1,14 +1,19 @@
 @import "./assets.css";
 
+.fa {
+    color: white;
+    font-size: 30px;
+}
+
 /* Dropdown menu */
-.dropdown {
+.header-item {
     color: white;
     font-size: 16px;
     border: none;
     cursor: pointer;
 }
 
-.dropbtn {
+.iconbtn {
     width: 40px;
     height: 40px;
 
@@ -20,11 +25,9 @@
 
     background-color: transparent;
     border-color: transparent;
-    color: white;
-    cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
+.iconbtn:hover, .iconbtn:focus {
   background-color: var(--secondary-green);
 }
 
@@ -87,8 +90,8 @@
     min-width: 200px;
 	height: 25px;
 
-    float: right;
-	margin-right: 20px;
+    float: left;
+	margin-left: 20px;
     -ms-transform: translateY(50%);
     transform: translateY(50%);
 

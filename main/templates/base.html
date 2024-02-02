@@ -12,53 +12,52 @@
 
 <div class="container_{% block container %}{% endblock %}">
     <header class="header">
-        <div class="dropdown">
-            <button onclick="dropdown()" class="dropbtn"><i class="fa fa-bars" style="font-size: 30px;"></i></button>
+        <div class="header-item">
+            <button onclick="window.location.href='/';" class="iconbtn"><i class="fa fa-home"></i></button>
+        </div>
+        <div class="header-item">
+            <button onclick="dropdown()" class="iconbtn"><i class="fa fa-bars"></i></button>
             <div id="menu" class="dropdown-content">
                 <li class="menuli"><a href="novels">Novels</a>
                     <ul class="sub-content">
-                        <a href="#novel-horror">Horror</a>
-                        <a href="#novel-fantasy">Fantasy</a>
-                        <a href="#novel-scifi">Science-Fiction</a>
-                        <a href="#novel-romance">Romance</a>
-                        <a href="#novel-ya">Y/A</a>
-                        <a href="#novel-other">Other</a>
+                        <a href="novels/horror">Horror</a>
+                        <a href="novels/fantasy">Fantasy</a>
+                        <a href="novels/scifi">Science-Fiction</a>
+                        <a href="novels/romance">Romance</a>
+                        <a href="novels/ya">Y/A</a>
+                        <a href="novels/other">Other</a>
                     </ul>
                 </li>
                 <li class="menuli"><a href="manga">Manga</a>
                     <ul class="sub-content">
-                        <a href="#manga-horror">Horror</a>
-                        <a href="#manga-comedy">Comedy</a>
-                        <a href="#manga-shounen">Shounen</a>
-                        <a href="#manga-shoujo">Shoujo</a>
-                        <a href="#manga-other">Other</a>
+                        <a href="manga/horror">Horror</a>
+                        <a href="manga/comedy">Comedy</a>
+                        <a href="manga/shounen">Shounen</a>
+                        <a href="manga/shoujo">Shoujo</a>
+                        <a href="manga/other">Other</a>
                     </ul>
                 </li>
                 <li class="menuli"><a href="comics">Comics</a>
                     <ul class="sub-content">
-                        <a href="#comic-batman">Batman</a>
-                        <a href="#comic-other">Other</a>
+                        <a href="comics/batman">Batman</a>
+                        <a href="comics/other">Other</a>
                     </ul>
                 </li>
                 <li class="menuli"><a href="nonfic">Non-Fiction</a>
                     <ul class="sub-content">
-                        <a href="#nonfic-history">History</a>
-                        <a href="#nonfic-politics">Politics</a>
-                        <a href="#nonfic-tech">Technology</a>
-                        <a href="#nonfic-philosophy">Philosophy</a>
-                        <a href="#nonfic-other">Other</a>
+                        <a href="nonfic/history">History</a>
+                        <a href="nonfic/politics">Politics</a>
+                        <a href="nonfic/tech">Technology</a>
+                        <a href="nonfic/philosophy">Philosophy</a>
+                        <a href="nonfic/other">Other</a>
                     </ul>
                 </li>
                 <a href="all" class="split">All books</a>
             </div>
-        </div> 
-        <div class="search">
-            <input type="text" placeholder="Search books...">
-            <button type="submit"><i class="fa fa-search icon" style="font-size: 18px;"></i></button>
         </div>
     </header>
     {% block content %}{% endblock %}
 </div>
-<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/header.js' %}"></script>
 </body>
 </html>
