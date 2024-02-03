@@ -1,4 +1,5 @@
 import os
+from .contexts import context_dict
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -14,13 +15,16 @@ def get_list_type(request):
     list_type = os.path.basename(os.path.normpath(path))
     return list_type
 
+def build_context(request):
+    list_type = get_list_type(request)
+
+    context = context_dict[list_type]
+
+    return context
+
 @login_required(login_url="/login/")
 def list(request):
     template = loader.get_template('list.html')
-
-    list_type = get_list_type(request)
-    title = list_type.capitalize()
-    context = {
-    'title' : title
-    }
+    context = build_context(request)
+    
     return HttpResponse(template.render(context, request))

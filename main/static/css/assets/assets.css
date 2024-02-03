@@ -37,3 +37,41 @@
 
     font-family: 'Recursive', sans-serif;
 }
+
+.list-table{
+    white-space: nowrap;
+    width: 90%;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.list-table tr {
+    border:0;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    height: 50px;
+}
+
+.list-table th {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.list-table th,
+.list-table td {
+    padding: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.list-no-items {
+    .list-table td;
+    overflow: visible !important;
+}
+

@@ -6,11 +6,22 @@ class Tag(models.Model):
 class Book(models.Model):
     STATUS_CHOICES = {
         "Y" : "Available",
-        "H" : "Borrowed",
-        "N" : "Unavailable",
+        "O" : "On Loan",
+        "R" : "Reserved",
+        "U" : "Unavailable",
+    }
+    OWNER_CHOICES = {
+        "R" : "Rayen",
+        "D" : "Don",
+        "C" : "Charlie",
+        "S" : "Sam",
+        "H" : "Honey",
+        "A" : "Ash",
+        "O" : "Soph",
     }
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
+    owner = models.CharField(max_length=1, choices=OWNER_CHOICES, default="None")
     blurb = models.CharField(max_length=1000, blank=True, default='')
     tags = models.ManyToManyField(Tag)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="Available")
@@ -62,6 +73,7 @@ class NonFiction(Book):
         "BOT" : "Botany",
         "CLI" : "Climate",
         "FIN" : "Finance",
+        "FIL" : "Film",
         "HIS" : "History",
         "HIT" : "Historical text",
         "MAT" : "Maths",
