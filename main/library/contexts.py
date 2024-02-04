@@ -1,31 +1,31 @@
-from .models import *
+from .models import Book
 
 # List of all list pages contexts
 
 context_dict = {
     'novels' : {
         'title' : "Novels",
-        'intro' : "Some introductory text...",
-        'list' : Novel.objects.all()
+        'intro' : "Find your fiction novels, novellas and short story collections here.",
+        'list' : Book.objects.filter(booktype__booktype="Novel")
     },
     'manga' : {
         'title' : "Manga",
-        'intro' : "Some introductory text...",
-        'list' : Manga.objects.all()
+        'intro' : "Not to be confused with comics.",
+        'list' : Book.objects.filter(booktype__booktype="Manga")
     },
     'comics' : {
         'title' : "Comics",
-        'intro' : "Some introductory text...",
-        'list' : Comic.objects.all()
+        'intro' : "Superheroes, supervillains and more.",
+        'list' : Book.objects.filter(booktype__booktype="Comic")
     },
     'nonfic' : {
         'title' : "Non-Fiction",
-        'intro' : "Some introductory text...",
-        'list' : NonFiction.objects.all()
+        'intro' : "Find a topic to learn about.",
+        'list' : Book.objects.filter(booktype__booktype="Non-Fiction")
     },
     'all' : {
         'title' : "All books",
-        'intro' : "Some introductory text...",
+        'intro' : "That's a lot of books man!",
         'list' : Book.objects.all()
     }
 }

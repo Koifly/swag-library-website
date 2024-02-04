@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from .models import Tag, Novel, Manga, Comic, NonFiction
+from .models import Tag, BookType, Genre, Book
 
 admin.site.register(Tag)
-admin.site.register(Novel)
-admin.site.register(Manga)
-admin.site.register(Comic)
-admin.site.register(NonFiction)
+admin.site.register(BookType)
+admin.site.register(Genre)
+admin.site.register(Book)
