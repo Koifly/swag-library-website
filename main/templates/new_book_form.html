@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/new_book_form.css' %}">
+
+{% block title %}Add a new Book{% endblock %}
+
+{% block container %}list{% endblock %}
+
+{% block content %}
+<div class="main">
+        <div class="text-container">
+            <form method="POST" class="new-book">
+                <fieldset>
+                    <legend>Form</legend>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="text-button" style="position: fixed; bottom: 60px;">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock %}

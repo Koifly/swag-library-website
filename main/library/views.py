@@ -1,5 +1,6 @@
 import os
 from .contexts import context_dict
+from .forms import AddBook
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -9,6 +10,15 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, "home.html")
 
+@login_required(login_url="/login/")
+def new_book(request):
+    if request.method == "POST":
+        form = AddBook(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddBook()
+    return render(request, 'new_book_form.html', {'form': form})
 
 def get_list_type(request):
     path = request.path
