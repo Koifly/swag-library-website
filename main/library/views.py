@@ -2,7 +2,7 @@ import os
 
 from .contexts import context_dict
 from .forms import AddBook
-from .models import Genre
+from .models import Genre, BookType
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -25,7 +25,7 @@ def new_book(request):
         form = AddBook(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect("all")
 
     else:
         form = AddBook()

@@ -22,6 +22,15 @@ class Genre(models.Model):
     def __str__(self):
         return f'{self.genre}:{self.booktype}'
 
+class BookSeries(models.Model):
+    name = models.CharField(max_length=30)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f'{self.name}'
+
 class Book(models.Model):
     STATUS_CHOICES = {
         "Y" : "Available",
@@ -44,8 +53,9 @@ class Book(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='books')
     owner = models.CharField(max_length=1, choices=OWNER_CHOICES, default="None")
     blurb = models.CharField(max_length=1000, blank=True, default='')
-    tags = models.ManyToManyField(Tag, blank=True, )
+    tags = models.ManyToManyField(Tag, blank=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="Available")
+    series = models.ForeignKey(BookSeries, on_delete=models.CASCADE, related_name='books')
 
     class Meta:
         ordering = ['title']

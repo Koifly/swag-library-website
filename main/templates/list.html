@@ -22,7 +22,11 @@
                         <tr>
                             <td>{{ item.title }}</td>
                             <td>{{ item.author }}</td>
-                            <td>{{ item.get_status_display }}</td>
+                            {% if item.booktype.booktype == "Series" %}
+                                <td>-</td>
+                            {% else %}
+                                <td>{{ item.get_status_display}}</td>
+                            {% endif %}
                             <td>{{ item.get_owner_display }}</td>
                             <td>Actions</td>
                         </tr>
