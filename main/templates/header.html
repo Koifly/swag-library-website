@@ -1,0 +1,20 @@
+<header class="header">
+    <div class="iconbtn-container">
+        <button onclick="window.location.href='/';" class="iconbtn"><i class="fa fa-home"></i></button>
+    </div>
+    <div class="iconbtn-container">
+        <button onclick="dropdown()" class="iconbtn"><i class="fa fa-bars"></i></button>
+        <div id="menu" class="dropdown-content">
+            {% for booktype in booktypelist %}
+            <li><a href="/{{ booktype.url }}">{{ booktype }}</a>
+                <ul>
+                    {% for genre in booktype.genre_set.all %}
+                    <a href="/{{ booktype.url }}/{{ genre.url }}">{{ genre.genre }}</a>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+            <li><a href="all" style="color: white;">All books</a></li>
+        </div>
+    </div>
+</header>

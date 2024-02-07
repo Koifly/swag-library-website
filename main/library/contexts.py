@@ -1,4 +1,10 @@
-from .models import Book, BookSeries, BookType
+from .models import Book, BookSeries, BookType, Genre
+from django.db.models import Q
+
+header_context = {
+    'booktypelist' : BookType.objects.filter(~Q(booktype="Series")),
+    'genrelist' : Genre.objects.all(),
+}
 
 # List of all list pages contexts
 def series_not_listed(book_list, series):
@@ -26,31 +32,42 @@ def get_list(book_type):
     #             book_list.append(series)
     return book_list
 
-context_dict = {
-    'novels' : {
+list_context_base = {
+    'novel' : {
         'title' : "Novels",
         'intro' : "Find your fiction novels, novellas and short story collections here.",
-        'list' : get_list("Novel")
     },
     'manga' : {
         'title' : "Manga",
         'intro' : "Not to be confused with comics.",
-        'list' : get_list("Manga")
     },
-    'comics' : {
+    'comic' : {
         'title' : "Comics",
         'intro' : "Superheroes, supervillains and more.",
-        'list' : get_list("Comic")
     },
-    'nonfic' : {
+    'non-fiction' : {
         'title' : "Non-Fiction",
         'intro' : "Find a topic to learn about.",
-        'list' : get_list("Non-Fiction")
     },
     'all' : {
         'title' : "All books",
         'intro' : "That's a lot of books man!",
-        'list' : Book.objects.all()
     }
 }
+
+def get_list_context(booktype_url, genre_url):
+    context = list_context_base[booktype_url]
+
+    if booktype_url == "all":
+        context['list'] = Book.objects.all()
+    else:
+        booktype = booktype_url.capitalize()
+        if genre_url:
+            genre = genre_url.capitalize()
+            context['list'] = Book.objects.filter(booktype__booktype=booktype).filter(genre__genre=genre)
+        else:
+            context['list'] = Book.objects.filter(booktype__booktype=booktype)
+
+    return context
+
 

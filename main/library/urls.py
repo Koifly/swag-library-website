@@ -4,10 +4,8 @@ from . import views
 urlpatterns = [
     path("", views.home, name="home"),
 
-    path("novels", views.list, name="novels"),
-    path("manga", views.list, name="manga"),
-    path("comics", views.list, name="comics"),
-    path("nonfic", views.list, name="nonfic"),
+    path("<slug:booktype>", views.list),
+    path("<slug:booktype>/<slug:genre>", views.list),
     path("all", views.list, name="all"),
 
     path("new-book", views.new_book, name="new-book"),

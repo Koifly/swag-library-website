@@ -9,12 +9,20 @@ class Tag(models.Model):
 class BookType(models.Model):
     booktype = models.CharField(max_length=30)
 
+    @property
+    def url(self):
+        return f'{self.booktype}'.lower()
+
     def __str__(self):
         return f'{self.booktype}'
 
 class Genre(models.Model):
     booktype = models.ForeignKey(BookType, on_delete=models.CASCADE)
     genre = models.CharField(max_length=50)
+
+    @property
+    def url(self):
+        return f'{self.genre}'.lower()
 
     class Meta:
         ordering = ['genre']
