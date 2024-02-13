@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Add a new Book{% endblock %}
+
+{% block container %}list{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="text-container">
+        <h1>Add a New Book</h1>
+        <form method="POST" id="newBookForm" data-genre-url="{% url 'ajax_load_genres' %}">
+            {% csrf_token %}
+            {% for field in bookform %}
+                <div class="field-container">
+                    {{ field.errors }}
+                    {{ field.label_tag }} <br> {{ field }}
+                </div>
+            {% endfor %}
+            <button onclick="javascript:history.back();" class="text-button cancel-button">Cancel</button>
+            <button type="submit" class="text-button submit-button">Submit</button>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock %}

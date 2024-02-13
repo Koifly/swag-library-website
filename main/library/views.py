@@ -1,12 +1,13 @@
 import os
 
 from .contexts import get_list_context, header_context
-from .forms import AddBook
+from .forms import AddBook, AddGenre
 from .models import Genre, BookType
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url="/login/")
@@ -23,15 +24,18 @@ def load_genres(request):
 @login_required(login_url="/login/")
 def new_book(request):
     if request.method == "POST":
-        form = AddBook(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("all")
+        bookform = AddBook(request.POST)
+        genreform = AddGenre(request.POST)
+        if bookform.is_valid():
+            messages.info(request, 'Your book has been added!')
+            bookform.save()
+            return redirect("/all")
 
     else:
-        form = AddBook()
-    context = header_context | {'form': form}
-    return render(request, 'new_book_form.html', context)
+        bookform = AddBook()
+        genreform = AddGenre()
+    context = header_context | {'bookform': bookform, 'genreform': genreform}
+    return render(request, 'new_book.html', context)
 
 
 @login_required(login_url="/login/")

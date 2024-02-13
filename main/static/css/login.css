@@ -44,13 +44,12 @@ body {
     width: 100%;
     padding: 0.75rem;
     box-sizing: border-box;
-    border: 1px solid #dddddd;
+    border: 1px solid border-color: var(--main-grey);;
     outline: none;
-    background: #eeeeee;
+    background: white;
     transition: background 0.2s, border-color 0.2s;
 }
 
 .form__input:focus {
-    border-color: var(--main-grey);
-    background: white;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }

@@ -5,16 +5,21 @@
     <div class="iconbtn-container">
         <button onclick="dropdown()" class="iconbtn"><i class="fa fa-bars"></i></button>
         <div id="menu" class="dropdown-content">
-            {% for booktype in booktypelist %}
-            <li><a href="/{{ booktype.url }}">{{ booktype }}</a>
-                <ul>
-                    {% for genre in booktype.genre_set.all %}
-                    <a href="/{{ booktype.url }}/{{ genre.url }}">{{ genre.genre }}</a>
-                    {% endfor %}
-                </ul>
-            </li>
-            {% endfor %}
-            <li><a href="all" style="color: white;">All books</a></li>
+            <ul>
+                {% for booktype in booktypelist %}
+                <li><a href="/{{ booktype.url }}">{{ booktype }}</a>
+                    <ul>
+                        {% for genre in booktype.genre_set.all %}
+                        {% if genre.url != "other" %}
+                        <li><a href="/{{ booktype.url }}/{{ genre.url }}">{{ genre.genre }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                        <li><a href="/{{ booktype.url }}/other">Other</a></li>
+                    </ul>
+                </li>
+                {% endfor %}
+                <li><a href="all">All books</a></li>
+            </ul>
         </div>
     </div>
 </header>
