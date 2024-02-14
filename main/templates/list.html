@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -9,8 +10,9 @@
         <div class="text-container">
             <h1>{{ title }}</h1>
             <p>{{ intro }}</p>
+            <div class="list-container">
             <table class="list-table">
-                <tr>
+                <tr class="header-row">
                     <th>Title</th>
                     <th>Author</th>
                     <th>Status</th>
@@ -19,7 +21,7 @@
                 </tr>
                 {% if list %}
                     {% for item in list %}
-                        <tr>
+                        <tr id="row_{{ item.id }}" class="collapsed-row">
                             <td>{{ item.title }}</td>
                             <td>{{ item.author }}</td>
                             {% if item.booktype.booktype == "Series" %}
@@ -28,7 +30,31 @@
                                 <td>{{ item.get_status_display}}</td>
                             {% endif %}
                             <td>{{ item.get_owner_display }}</td>
-                            <td>Actions</td>
+                            <td>
+                                <button class="iconbtn iconbtn-small action" expanded="false" id="{{ item.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ item.id }}"></i></button></td>
+                            <br>
+                            <tr class="hidden-info expanded-row" id="blurb_{{ item.id }}">
+                                {% if item.blurb %}
+                                    <td class="long-text" colspan="2">{{ item.blurb }}</td>
+                                {% else %}
+                                    <td colspan="2">-</td>
+                                {% endif %}
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr class="hidden-info expanded-row" id="tags_{{ item.id }}">
+                                <td class="tags" colspan="5">
+                                    Tags: {% for tag in item.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </td>
+                            </tr>
+                            <tr class="hidden-info collapsed-row" id="actions_{{ item.id }}">
+                                <td colspan="3"></td>
+                                <td>
+                                    <button class="text-button text-small">Borrow</button>
+                                </td>
+                                <td>
+                                    <button class="iconbtn iconbtn-small action edit" onclick="window.location.href='/new-book/{{ item.id }}';"><i class="fa white fa-pencil"></i></button>
+                                </td>
+                            </tr>
                         </tr>
                     {% endfor %}
                 {% else %}
@@ -37,9 +63,9 @@
                    </tr>
                 {% endif %}
         </table>
-        <div>
-            <button class="text-button" style="position: fixed; bottom: 60px;" onclick="window.location.href='/new-book';">Add a book</button>
         </div>
+        <button class="text-button text-large add-book" onclick="window.location.href='/new-book';">Add a book</button>
         </div>
     </div>
+    <script src="{% static 'js/list.js' %}"></script>
 {% endblock %}

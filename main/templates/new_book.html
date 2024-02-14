@@ -8,13 +8,26 @@
 {% block content %}
 <div class="main">
     <div class="text-container">
-        <h1>Add a New Book</h1>
+        {% if book %}
+            <h1>Edit your book</h1>
+        {% else %}
+            <h1>Add a New Book</h1>
+        {% endif %}
+
         <form method="POST" id="newBookForm" data-genre-url="{% url 'ajax_load_genres' %}">
             {% csrf_token %}
             {% for field in bookform %}
                 <div class="field-container">
                     {{ field.errors }}
-                    {{ field.label_tag }} <br> {{ field }}
+                    {{ field.label_tag }} <br> 
+
+                    {% if book and field.name == "booktype" %}
+                        {{ book.booktype }}
+                    {% elif book and field.name == "genre" %}
+                        {{ book.genre.genre }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                 </div>
             {% endfor %}
             <button onclick="javascript:history.back();" class="text-button cancel-button">Cancel</button>

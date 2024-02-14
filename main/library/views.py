@@ -1,8 +1,8 @@
 import os
 
 from .contexts import get_list_context, header_context
-from .forms import AddBook, AddGenre
-from .models import Genre, BookType
+from .forms import AddBook, AddGenre, EditBook
+from .models import Book, Genre, BookType
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -22,19 +22,27 @@ def load_genres(request):
     return render(request, 'hr/genre_list_options.html', {'genres': genres})
 
 @login_required(login_url="/login/")
-def new_book(request):
+def new_book(request, book=None):
+    book_instance = None
     if request.method == "POST":
-        bookform = AddBook(request.POST)
-        genreform = AddGenre(request.POST)
+        if book:
+            book_instance = Book.objects.get(id=book)
+            bookform = EditBook(
+                request.POST,
+                instance=book_instance
+            )
+        else:
+            bookform = bookform = AddBook(request.POST)
         if bookform.is_valid():
-            messages.info(request, 'Your book has been added!')
             bookform.save()
             return redirect("/all")
-
     else:
-        bookform = AddBook()
-        genreform = AddGenre()
-    context = header_context | {'bookform': bookform, 'genreform': genreform}
+        if book:
+            book_instance = Book.objects.get(id=book)
+            bookform = EditBook(instance=book_instance)
+        else:
+            bookform = bookform = AddBook()
+    context = header_context | {'bookform': bookform, 'book': book_instance}
     return render(request, 'new_book.html', context)
 
 

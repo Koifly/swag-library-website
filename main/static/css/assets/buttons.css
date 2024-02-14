@@ -2,14 +2,11 @@
 
 /* Button with text */
 .text-button {
-    width: 205px;
-    height: 55px;
     border-radius: 10px;
     border-color: transparent;
 
     background-color: var(--main-green);
     color:white;
-    font-size: 20px;
 }
 
 .text-button:hover {
@@ -23,18 +20,28 @@
     transform: scale(0.98);
 }
 
+.text-large {
+    width: 205px;
+    height: 55px;
+
+    font-size: 20px;
+}
+
+.text-small {
+    width: 70px;
+    height: 30px;
+    
+    font-size: 15px;
+    float: right;
+}
+
 /* Icon buttons */
 .iconbtn-container{
-    color: white;
-    font-size: 16px;
     border: none;
     cursor: pointer;
 }
 
 .iconbtn {
-    width: 40px;
-    height: 40px;
-
     float:left;
     -ms-transform: translateY(25%);
     transform: translateY(25%);
@@ -44,6 +51,29 @@
     background-color: transparent;
     border-color: transparent;
 }
+
+.iconbtn-large {
+    width: 40px;
+    height: 40px;
+
+    font-size: 30px;
+}
+
+.iconbtn-small {
+    width: 30px;
+    height: 30px;
+
+    font-size: 20px;
+}
+
+.white {
+    color: white;   /* Make sure icons are white */
+}
+
+.black {
+    color: black;   /* Make sure icons are black */
+}
+
 
 .iconbtn:hover, .iconbtn:focus {
     cursor: pointer;

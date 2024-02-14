@@ -36,3 +36,10 @@ body {
     background-size: contain;
     max-height: 700px;
 }
+
+.add-book {
+    position: fixed;
+    bottom: 7%;
+    left: 7%;
+}
+

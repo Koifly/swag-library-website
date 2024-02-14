@@ -50,8 +50,8 @@ class Book(models.Model):
         "A" : "Ash",
         "O" : "Soph",
     }
-    title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=True)
+    author = models.CharField(max_length=200, blank=True)
     booktype = models.ForeignKey(BookType, on_delete=models.CASCADE, related_name='books')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='books')
     owner = models.CharField(max_length=1, choices=OWNER_CHOICES, default="None")

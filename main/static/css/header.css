@@ -1,11 +1,6 @@
 @import "./assets/assets.css";
 
 /* Dropdown menu */
-.fa {
-    color: white;   /* Make sure icons are white */
-    font-size: 30px;
-}
-
 .dropdown-content {
     visibility: hidden;
 }
