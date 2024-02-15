@@ -105,10 +105,18 @@ class EditBook(forms.ModelForm):
             self.fields['booktype'].disabled = True
             self.fields['genre'].disabled = True
 
-class EditBook(forms.ModelForm):
+class BorrowBook(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ["status"]
+        fields = ["status", "borrower"]
+        widgets = {
+            'status': forms.Select(attrs={
+                'class': 'text-input'
+            }),
+            'borrower': forms.Select(attrs={
+                'class': 'text-input'
+            })
+        }
 
     def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

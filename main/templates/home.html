@@ -8,10 +8,10 @@
     <div class="image"></div>
     <div class="main">
         <div class="text-container">
-            <h1>Welcome to the Library</h1>
+            <h1>Welcome to the Library {{ user.first_name }}!</h1>
             <p>Click below to add a book, or browse the library via the menu above.</p>
             <p>Website by Rayen, art by Honey.</p>
-            <button class="text-button text-large add-book" style="bottom: 60px;" onclick="window.location.href='/new-book';">Add a book</button>
+            <button class="text-button text-large add-book" style="bottom: 60px;" onclick="window.location.href='/book';">Add a book</button>
         </div>
     </div>
 {% endblock %}

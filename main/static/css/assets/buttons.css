@@ -28,7 +28,7 @@
 }
 
 .text-small {
-    width: 70px;
+    width: auto;
     height: 30px;
     
     font-size: 15px;

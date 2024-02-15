@@ -41,7 +41,7 @@ class Book(models.Model):
         "R" : "Reserved",
         "U" : "Unavailable",
     }
-    OWNER_CHOICES = {
+    PERSON_CHOICES = {
         "R" : "Rayen",
         "D" : "Don",
         "C" : "Charlie",
@@ -49,15 +49,17 @@ class Book(models.Model):
         "H" : "Honey",
         "A" : "Ash",
         "O" : "Soph",
+        "N" : "None",
     }
     title = models.CharField(max_length=200, blank=True)
     author = models.CharField(max_length=200, blank=True)
     booktype = models.ForeignKey(BookType, on_delete=models.CASCADE, related_name='books')
     genre = models.ForeignKey(Genre, on_delete=models.CASCADE, related_name='books')
-    owner = models.CharField(max_length=1, choices=OWNER_CHOICES, default="None")
+    owner = models.CharField(max_length=1, choices=PERSON_CHOICES, default="N")
     blurb = models.CharField(max_length=1000, blank=True, default='')
     tags = TaggableManager()
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="Available")
+    borrower = models.CharField(max_length=1, choices=PERSON_CHOICES, default="N")
     # series = models.ForeignKey(BookSeries, on_delete=models.CASCADE, related_name='books')
 
     class Meta:

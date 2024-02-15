@@ -4,8 +4,10 @@ from . import views
 urlpatterns = [
     path("", views.home, name="home"),
 
-    path("new-book", views.new_book, name="new-book"),
-    path("new-book/<slug:book>", views.new_book),
+    path("book", views.book_form),
+    path("book/edit-id:<slug:book>", views.book_form),
+    path("borrow", views.borrow, name="borrow"),
+    path("availability", views.availability, name="availability"),
     path("ajax/load-genres/", views.load_genres, name="ajax_load_genres"),
 
     path("<slug:booktype>", views.list),
