@@ -2,7 +2,6 @@
 
 /* Button with text */
 .text-button {
-    border-radius: 10px;
     border-color: transparent;
 
     background-color: var(--main-green);
@@ -21,6 +20,7 @@
 }
 
 .text-large {
+    border-radius: 10px;
     width: 205px;
     height: 55px;
 
@@ -28,6 +28,7 @@
 }
 
 .text-small {
+    border-radius: 5px;
     width: auto;
     height: 30px;
     

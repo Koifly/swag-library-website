@@ -52,6 +52,10 @@ list_context_base = {
     'all' : {
         'title' : "All books",
         'intro' : "That's a lot of books man!",
+    },
+    'user' : {
+        'title' : "My books",
+        'intro' : "All the books you've added so far...",
     }
 }
 
@@ -61,13 +65,18 @@ def get_list_context(booktype_url, genre_url):
     if booktype_url == "all":
         context['list'] = Book.objects.all()
     else:
-        booktype = booktype_url.capitalize()
+        booktype = booktype_url.title()
         if genre_url:
-            genre = genre_url.capitalize()
+            genre = genre_url.title()
             context['list'] = Book.objects.filter(booktype__booktype=booktype).filter(genre__genre=genre)
         else:
             context['list'] = Book.objects.filter(booktype__booktype=booktype)
 
     return context
 
+def get_user_context(user):
+    context = list_context_base['user']
+    context['list'] = Book.objects.filter(owner=user)
 
+    return context
+        

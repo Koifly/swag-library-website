@@ -3,7 +3,7 @@
     <!-- Book owner actions: mark book as returned, make book unavailable, edit book -->
     {% if user.first_name == item.get_owner_display %}
         <td colspan="2"></td>
-        {% if item.status == "O" %}
+        {% if item.get_status_display == "On Loan" %}
             <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
@@ -18,7 +18,7 @@
         {% endif %}
 
         <td>
-        {% if item.status == "U" %}
+        {% if item.get_status_display == "Unavailable" %}
             <form method="POST" action="{% url 'availability' %}">
                 {% csrf_token %}
                     <fieldset  class="hidden-info">
@@ -46,9 +46,11 @@
 
     <!-- Book non-owner actions: borrow book if available, mark book as returned -->
     {% else %}
-        <td colspan="4"></td>
-        <td>
-            {% if item.status == "Y"%}
+        <td colspan="3"></td>
+        
+            {% if item.get_status_display == "Available" %}
+            <td></td>
+            <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
                     <fieldset  class="hidden-info">
@@ -56,7 +58,10 @@
                     </fieldset>
                     <button class="text-button text-small" type="submit" action="{% url 'borrow'%}">Borrow</button>
                 </form>
-            {% elif item.status == "O" %}
+            </td>
+            {% elif item.get_status_display == "On Loan" %}
+            <td></td>
+            <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
                     <fieldset  class="hidden-info">
@@ -64,9 +69,11 @@
                     </fieldset>
                     <button class="text-button text-small" type="submit" action="{% url 'borrow'%}">Return</button>
                 </form>
+            </td>
+            {% elif item.get_status_display == "Unavailable" %}
+                <td colspan="2"><p class="unavailable">This book cannot be borrowed.</p></td>
             {% else %}
-                This book cannot be borrowed.
+                <td colspan="2"></td>
             {%endif%}
-        </td>
     {% endif %}
 </tr>

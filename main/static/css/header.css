@@ -14,6 +14,7 @@
     padding: 0;
   
     list-style: none;
+    z-index:9;
 }
 
 .dropdown-content li {
@@ -97,4 +98,18 @@ ul li ul:hover {
     position: absolute;
     background: transparent;
     border: transparent;
+}
+
+
+/* My books */
+.light {
+    background-color: var(--secondary-green) !important;
+    color: black !important;
+}
+
+.centered {
+    float:right;
+    -ms-transform: translateY(50%);
+    transform: translateY(50%);
+    margin-right: 10px;
 }

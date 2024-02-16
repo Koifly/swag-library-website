@@ -19,28 +19,28 @@ class AddBook(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Title'
             }),
             'author': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Author'
             }),
             'owner': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'booktype': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'genre': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'blurb': forms.Textarea(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Optional, maximum 1000 characters.'
             }),
             'tags': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Write your tags here, separated by commmas.'
             })
         }
@@ -74,28 +74,28 @@ class EditBook(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Title'
             }),
             'author': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Author'
             }),
             'owner': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'booktype': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'genre': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'blurb': forms.Textarea(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Optional, maximum 1000 characters.'
             }),
             'tags': forms.TextInput(attrs={
-                'class': 'text-input',
+                'class': 'form-input',
                 'placeholder': 'Write your tags here, separated by commmas.'
             })
         }
@@ -111,10 +111,10 @@ class BorrowBook(forms.ModelForm):
         fields = ["status", "borrower"]
         widgets = {
             'status': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             }),
             'borrower': forms.Select(attrs={
-                'class': 'text-input'
+                'class': 'form-input'
             })
         }
 
@@ -124,7 +124,17 @@ class BorrowBook(forms.ModelForm):
 class AddGenre(forms.ModelForm):
     class Meta:
         model = Genre
-        fields = ["genre"]
+        fields = ["booktype", "genre"]
         labels = {
+            "booktype": "Booktype",
             "genre": "Genre",
+        }
+
+        widgets = {
+            'booktype': forms.Select(attrs={
+                'class': 'form-input'
+            }),
+            'genre': forms.TextInput(attrs={
+                'class': 'form-input'
+            })
         }

@@ -1,6 +1,6 @@
 import os
 
-from .contexts import get_list_context, header_context
+from .contexts import *
 from .forms import AddBook, AddGenre, EditBook, BorrowBook
 from .models import Book, Genre, BookType
 
@@ -35,7 +35,7 @@ def book_form(request, book=None):
             bookform = bookform = AddBook(request.POST)
         if bookform.is_valid():
             bookform.save()
-            return redirect("/all")
+            return redirect("/user/" + request.user.first_name)
     else:
         if book:
             book_instance = Book.objects.get(id=book)
@@ -72,10 +72,29 @@ def borrow(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 @login_required(login_url="/login/")
+def add_genre(request):
+    if request.method == "POST":
+        form = AddGenre(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/book")
+    else:
+        form = AddGenre()
+    context = header_context | {'form': form}
+    return render(request, 'forms/genre_form.html', context)
+
+@login_required(login_url="/login/")
 def list(request, booktype="all", genre=None):
     template = loader.get_template('list.html')
-
     list_context = get_list_context(booktype, genre)
+    context = header_context | list_context
+    
+    return HttpResponse(template.render(context, request))
+
+@login_required(login_url="/login/")
+def my_books(request, user):
+    template = loader.get_template('list.html')
+    list_context = get_user_context(user[0])
     context = header_context | list_context
     
     return HttpResponse(template.render(context, request))

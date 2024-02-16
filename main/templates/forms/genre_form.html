@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Borrow{% endblock %}
+{% block title %}Add a new Book{% endblock %}
 
 {% block container %}list{% endblock %}
 
 {% block content %}
 <div class="main">
     <div class="text-container">
-        <h1>Borrow {{ book.title }}</h1>
+        <h1>Add a New Genre</h1>
 
         <form method="POST">
             {% csrf_token %}
-            {% for field in bookform %}
+            {% for field in form %}
                 <div class="field-container">
                     {{ field.errors }}
                     {{ field.label_tag }} <br> {{ field }}

@@ -27,12 +27,12 @@
                             {% if item.booktype.booktype == "Series" %}
                                 <td>-</td>
                             {% else %}
-                                <td>{{ item.get_status_display}}</td>
+                                <td>{{ item.get_status_display }}</td>
                             {% endif %}
                             <td>{{ item.get_owner_display }}</td>
                             <td>
-                                <button class="iconbtn iconbtn-small action" expanded="false" id="{{ item.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ item.id }}"></i></button></td>
-                            <br>
+                                <button class="iconbtn iconbtn-small action" expanded="false" id="{{ item.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ item.id }}"></i></button>
+                            </td>
                             <tr class="hidden-info expanded-row" id="blurb_{{ item.id }}">
                                 {% if item.blurb %}
                                     <td class="long-text" colspan="2">{{ item.blurb }}</td>

@@ -25,6 +25,13 @@
                         {{ book.booktype }}
                     {% elif book and field.name == "genre" %}
                         {{ book.genre.genre }}
+                    {% elif not book and field.name == "genre"%}
+                        <div class="genre-container">
+                        {{ field }}
+                        <button class="iconbtn iconbtn-small genre" onclick="window.location.href='/new-genre';">
+                            <i class="fa white fa-plus"></i>
+                        </button>
+                        </div>
                     {% else %}
                         {{ field }}
                     {% endif %}
