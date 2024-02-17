@@ -19,7 +19,7 @@ from aws_secretsmanager_caching import SecretCache, SecretCacheConfig
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-client = botocore.session.get_session().create_client('secretsmanager')
+client = botocore.session.get_session().create_client('secretsmanager', region_name='eu-west-2')
 cache_config = SecretCacheConfig()
 cache = SecretCache( config = cache_config, client = client)
 
