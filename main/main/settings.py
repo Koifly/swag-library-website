@@ -11,21 +11,24 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import botocore 
+import botocore.session 
+from aws_secretsmanager_caching import SecretCache, SecretCacheConfig 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+client = botocore.session.get_session().create_client('secretsmanager')
+cache_config = SecretCacheConfig()
+cache = SecretCache( config = cache_config, client = client)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--&a)i^dqztopm21*q+2ai92hp)7hx3j4yrdwc4uhu5+lt7hg4f'
+SECRET_KEY = cache.get_secret_string('library/django-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["18.171.249.219"]
 
 
 # Application definition
