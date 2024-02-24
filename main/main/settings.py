@@ -25,7 +25,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["18.171.249.219"]
+ALLOWED_HOSTS = ['tauthereal.pythonanywhere.com']
 
 
 # Application definition
