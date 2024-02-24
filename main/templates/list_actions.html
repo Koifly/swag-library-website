@@ -18,7 +18,7 @@
         {% endif %}
 
         <td>
-        {% if item.get_status_display == "Unavailable %}
+        {% if item.get_status_display == "Unavailable" %}
             <form method="POST" action="{% url 'availability' %}">
                 {% csrf_token %}
                     <fieldset  class="hidden-info">
