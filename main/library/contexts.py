@@ -67,7 +67,7 @@ def get_list_context(booktype_url, genre_url):
     else:
         booktype = booktype_url.title()
         if genre_url:
-            genre = genre_url.title()
+            genre = genre_url.title().replace('_', ' ')
             context['list'] = Book.objects.filter(booktype__booktype=booktype).filter(genre__genre=genre)
         else:
             context['list'] = Book.objects.filter(booktype__booktype=booktype)

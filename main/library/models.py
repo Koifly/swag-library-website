@@ -1,3 +1,4 @@
+import re
 from django.db import models
 from taggit.managers import TaggableManager
 
@@ -17,7 +18,8 @@ class Genre(models.Model):
 
     @property
     def url(self):
-        return f'{self.genre}'.lower()
+        genre_str = f'{self.genre}'
+        return '_'.join(re.findall(r'\w+', genre_str)).lower()
 
     class Meta:
         ordering = ['genre']
