@@ -109,7 +109,6 @@ ul li ul:hover {
 
 .centered {
     float:right;
-    -ms-transform: translateY(50%);
-    transform: translateY(50%);
+    margin-top: 15px;
     margin-right: 10px;
 }
