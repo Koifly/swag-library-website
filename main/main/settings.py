@@ -26,10 +26,10 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 DEBUG = False
 
 # DEV
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # PROD
-# ALLOWED_HOSTS = ['tauthereal.pythonanywhere.com']
+ALLOWED_HOSTS = ['tauthereal.pythonanywhere.com']
 
 
 # Application definition
