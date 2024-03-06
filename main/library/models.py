@@ -62,8 +62,9 @@ class Book(models.Model):
     tags = TaggableManager()
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default="Available")
     borrower = models.CharField(max_length=1, choices=PERSON_CHOICES, default="N")
-    # series = models.ForeignKey(BookSeries, on_delete=models.CASCADE, related_name='books')
-
+    series = models.ForeignKey(BookSeries, on_delete=models.CASCADE, blank=True, default=2)
+    volume = models.IntegerField(blank=True, default=0)
+    
     class Meta:
         ordering = ['title']
 
