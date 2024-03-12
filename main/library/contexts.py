@@ -1,4 +1,4 @@
-from .models import Book, BookSeries, BookType, Genre
+from .models import *
 from django.db.models import Q
 
 header_context = {
@@ -13,24 +13,31 @@ def series_not_listed(book_list, series):
             return False
     return True
 
-def get_list(book_type):
-    all_books = list(Book.objects.filter(booktype__booktype=book_type))
-    book_list = all_books
-    # TODO: support book series
-    
-    # for book in all_books:
-    #     if book.series.name != "None":
-    #         series = Book(
-    #             title=book.series.name,
-    #             author=book.author,
-    #             booktype=BookType(booktype="Series"),
-    #             genre=book.genre, owner=book.owner,
-    #             series=book.series
-    #         )
-    #         book_list.remove(book)
-    #         if series_not_listed(book_list, series):
-    #             book_list.append(series)
-    return book_list
+def get_book_list(booktype, genre):
+    if genre:
+        all_books = Book.objects.filter(booktype__booktype=booktype).filter(genre__genre=genre)
+    elif booktype:
+        all_books = Book.objects.filter(booktype__booktype=booktype)
+    else:
+        all_books = Book.objects.all()
+
+    clean_list = []
+    doneSeries = []
+
+    for book in all_books:
+        name = book.series.name
+        if name == 'None': # Series is None
+            clean_list.append({'isSeries':False, 'name':book.title, 'seriesBooks':[book]})
+        else:
+            if name not in doneSeries:
+                doneSeries.append(name)
+                books_in_series = all_books.filter(series__name=name)
+                clean_list.append({'isSeries':True, 'name':name, 'seriesBooks':books_in_series})
+
+    clean_list = sorted(clean_list, key=lambda d: d['name'])
+
+    return clean_list
+
 
 list_context_base = {
     'novel' : {
@@ -63,15 +70,14 @@ def get_list_context(booktype_url, genre_url):
     context = list_context_base[booktype_url]
 
     if booktype_url == "all":
-        context['list'] = Book.objects.all()
+        context['list'] = get_book_list(None, None)
     else:
         booktype = booktype_url.title()
         if genre_url:
             genre = genre_url.title().replace('_', ' ')
-            context['list'] = Book.objects.filter(booktype__booktype=booktype).filter(genre__genre=genre)
+            context['list'] = get_book_list(booktype, genre)
         else:
-            context['list'] = Book.objects.filter(booktype__booktype=booktype)
-
+            context['list'] = get_book_list(booktype, None)
     return context
 
 def get_user_context(user):

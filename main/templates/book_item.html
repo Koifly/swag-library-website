@@ -1,0 +1,23 @@
+<tr id="row_{{ book.id }}" class="collapsed-row">
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.get_status_display }}</td>
+    <td>{{ book.get_owner_display }}</td>
+    <td>
+        <button class="iconbtn iconbtn-small action" expanded="false" id="{{ book.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ book.id }}"></i></button>
+    </td>
+    <tr class="hidden-info expanded-row" id="blurb_{{ book.id }}">
+        {% if book.blurb %}
+            <td class="long-text" colspan="2">{{ book.blurb }}</td>
+        {% else %}
+            <td colspan="2">-</td>
+        {% endif %}
+        <td colspan="3"></td>
+    </tr>
+    <tr class="hidden-info expanded-row" id="tags_{{ book.id }}">
+        <td class="tags" colspan="5">
+            Tags: {% for tag in book.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
+        </td>
+    </tr>
+    {% include "list_actions.html" %}
+</tr>
