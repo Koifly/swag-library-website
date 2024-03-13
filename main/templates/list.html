@@ -34,7 +34,7 @@
                                     <button class="iconbtn iconbtn-small action" expanded="false" id="{{ forloop.counter }}" onclick="toggle_series(this.id)"><i class="fa black fa-angle-up" id="icon_{{ forloop.counter }}"></i></button>
                                 </td>
                             </tr>
-                            <tr class="hidden-info" id="books_{{ forloop.counter }}">
+                            <tr class="hidden-info sublist" id="books_{{ forloop.counter }}">
                                 <td colspan="5">
                                 <table class="list-table">
                                     {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}

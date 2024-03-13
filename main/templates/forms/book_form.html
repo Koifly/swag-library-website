@@ -32,6 +32,13 @@
                             <i class="fa white fa-plus"></i>
                         </button>
                         </div>
+                    {% elif not book and field.name == "series"%}
+                        <div class="genre-container">
+                        {{ field }}
+                        <button class="iconbtn iconbtn-small genre" onclick="window.location.href='/new-series';">
+                            <i class="fa white fa-plus"></i>
+                        </button>
+                        </div>
                     {% else %}
                         {{ field }}
                     {% endif %}

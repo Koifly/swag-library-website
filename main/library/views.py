@@ -1,7 +1,7 @@
 import os
 
 from .contexts import *
-from .forms import AddBook, AddGenre, EditBook, BorrowBook
+from .forms import *
 from .models import Book, Genre, BookType
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -82,6 +82,18 @@ def add_genre(request):
         form = AddGenre()
     context = header_context | {'form': form}
     return render(request, 'forms/genre_form.html', context)
+
+@login_required(login_url="/login/")
+def add_series(request):
+    if request.method == "POST":
+        form = AddSeries(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/book")
+    else:
+        form = AddSeries()
+    context = header_context | {'form': form}
+    return render(request, 'forms/series_form.html', context)
 
 @login_required(login_url="/login/")
 def list(request, booktype="all", genre=None):

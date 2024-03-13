@@ -1,18 +1,20 @@
 from django import forms
 from taggit.forms import *
-from .models import Book, Genre
+from .models import Book, Genre, BookSeries
 
 
 class AddBook(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ["title", "author","owner", "booktype", "genre", "blurb", "tags"]
+        fields = ["title", "author","owner", "booktype", "genre", "series", "volume", "blurb", "tags"]
         labels = {
             "title": "Title",
             "author": "Author",
             "owner": "Owner",
             "booktype": "Book type",
             "genre": "Genre",
+            "series": "Series",
+            "volume": "Volume",
             "blurb": "Blurb",
             "tags": "Tags",
         }
@@ -33,6 +35,13 @@ class AddBook(forms.ModelForm):
                 'class': 'form-input'
             }),
             'genre': forms.Select(attrs={
+                'class': 'form-input'
+            }),
+            'series': forms.Select(attrs={
+                'class': 'form-input'
+            }),
+            'volume': forms.TextInput(attrs={
+                'type':'number',
                 'class': 'form-input'
             }),
             'blurb': forms.Textarea(attrs={
@@ -61,13 +70,15 @@ class AddBook(forms.ModelForm):
 class EditBook(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ["title", "author","owner", "booktype", "genre", "blurb", "tags"]
+        fields = ["title", "author","owner", "booktype", "genre", "series", "volume", "blurb", "tags"]
         labels = {
             "title": "Title",
             "author": "Author",
             "owner": "Owner",
             "booktype": "Book type",
             "genre": "Genre",
+            "series": "Series",
+            "volume": "Volume",
             "blurb": "Blurb",
             "tags": "Tags",
         }
@@ -135,6 +146,20 @@ class AddGenre(forms.ModelForm):
                 'class': 'form-input'
             }),
             'genre': forms.TextInput(attrs={
+                'class': 'form-input'
+            })
+        }
+
+class AddSeries(forms.ModelForm):
+    class Meta:
+        model = BookSeries
+        fields = ["name"]
+        labels = {
+            "name": "Series name"
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={
                 'class': 'form-input'
             })
         }
