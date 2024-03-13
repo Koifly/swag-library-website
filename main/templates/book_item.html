@@ -4,7 +4,7 @@
     <td>{{ book.get_status_display }}</td>
     <td>{{ book.get_owner_display }}</td>
     <td>
-        <button class="iconbtn iconbtn-small action" expanded="false" id="{{ book.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ book.id }}"></i></button>
+        <button class="iconbtn iconbtn-small action" expanded="false" id="{{ book.id }}" onclick="toggle_book(this.id)"><i class="fa black fa-angle-up" id="icon_{{ book.id }}"></i></button>
     </td>
     <tr class="hidden-info expanded-row" id="blurb_{{ book.id }}">
         {% if book.blurb %}

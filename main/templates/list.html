@@ -25,17 +25,21 @@
                         {% if item|get_value:'isSeries' == False %}
                             {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}
                         {% else %}
-                            <tr id="row_{{ item|get_value:'name' }}" class="collapsed-row">
+                            <tr id="row_{{ forloop.counter }}" class="collapsed-row">
                                 <td>{{ item|get_value:'name' }}</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>
-                                    <button class="iconbtn iconbtn-small action" expanded="false" id="{{ book.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ book.id }}"></i></button>
+                                    <button class="iconbtn iconbtn-small action" expanded="false" id="{{ forloop.counter }}" onclick="toggle_series(this.id)"><i class="fa black fa-angle-up" id="icon_{{ forloop.counter }}"></i></button>
                                 </td>
                             </tr>
-                            <tr class="hidden-info" id="books_{{ item|get_value:'name' }}">
-                                {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}
+                            <tr class="hidden-info" id="books_{{ forloop.counter }}">
+                                <td colspan="5">
+                                <table class="list-table">
+                                    {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}
+                                </table>
+                                </td>
                             </tr>
                         {% endif %}
                     {% endfor %}
