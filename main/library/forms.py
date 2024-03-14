@@ -101,6 +101,13 @@ class EditBook(forms.ModelForm):
             'genre': forms.Select(attrs={
                 'class': 'form-input'
             }),
+            'series': forms.Select(attrs={
+                'class': 'form-input'
+            }),
+            'volume': forms.TextInput(attrs={
+                'type':'number',
+                'class': 'form-input'
+            }),
             'blurb': forms.Textarea(attrs={
                 'class': 'form-input',
                 'placeholder': 'Optional, maximum 1000 characters.'
