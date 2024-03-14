@@ -1,14 +1,14 @@
-<tr class="hidden-info collapsed-row" id="actions_{{ item.id }}">
+<tr class="hidden-info collapsed-row" id="actions_{{ book.id }}">
 
     <!-- Book owner actions: mark book as returned, make book unavailable, edit book -->
-    {% if user.first_name == item.get_owner_display %}
+    {% if user.first_name == book.get_owner_display %}
         <td colspan="2"></td>
-        {% if item.get_status_display == "On Loan" %}
+        {% if book.get_status_display == "On Loan" %}
             <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
                     <fieldset  class="hidden-info">
-                        <input type="radio" name="book_id" value="{{ item.id }}" checked="checked">
+                        <input type="radio" name="book_id" value="{{ book.id }}" checked="checked">
                     </fieldset>
                     <button class="text-button text-small" type="submit" action="{% url 'borrow'%}">Returned</button>
                 </form>
@@ -18,11 +18,11 @@
         {% endif %}
 
         <td>
-        {% if item.get_status_display == "Unavailable" %}
+        {% if book.get_status_display == "Unavailable" %}
             <form method="POST" action="{% url 'availability' %}">
                 {% csrf_token %}
                     <fieldset  class="hidden-info">
-                        <input type="radio" name="book_id" value="{{ item.id }}" checked="checked">
+                        <input type="radio" name="book_id" value="{{ book.id }}" checked="checked">
                     </fieldset>
                 <button class="text-button text-small" type="submit">Make available</button>
             </form>
@@ -30,7 +30,7 @@
             <form method="POST" action="{% url 'availability' %}">
                 {% csrf_token %}
                     <fieldset  class="hidden-info">
-                        <input type="radio" name="book_id" value="{{ item.id }}" checked="checked">
+                        <input type="radio" name="book_id" value="{{ book.id }}" checked="checked">
                     </fieldset>
                 <button class="text-button text-small" type="submit">Make unavailable</button>
             </form>
@@ -38,7 +38,7 @@
         </td>
 
         <td>
-            <button class="iconbtn iconbtn-small action edit" onclick="window.location.href='/book/edit-id:{{ item.id }}';">
+            <button class="iconbtn iconbtn-small action edit" onclick="window.location.href='/book/edit-id:{{ book.id }}';">
                 <i class="fa white fa-pencil"></i>
             </button>
         </td>
@@ -48,29 +48,29 @@
     {% else %}
         <td colspan="3"></td>
         
-            {% if item.get_status_display == "Available" %}
+            {% if book.get_status_display == "Available" %}
             <td></td>
             <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
                     <fieldset  class="hidden-info">
-                        <input type="radio" name="book_id" value="{{ item.id }}" checked="checked">
+                        <input type="radio" name="book_id" value="{{ book.id }}" checked="checked">
                     </fieldset>
                     <button class="text-button text-small" type="submit" action="{% url 'borrow'%}">Borrow</button>
                 </form>
             </td>
-            {% elif item.get_status_display == "On Loan" %}
+            {% elif book.get_status_display == "On Loan" %}
             <td></td>
             <td>
                 <form method="POST" action="{% url 'borrow' %}">
                     {% csrf_token %}
                     <fieldset  class="hidden-info">
-                        <input type="radio" name="book_id" value="{{ item.id }}" checked="checked">
+                        <input type="radio" name="book_id" value="{{ book.id }}" checked="checked">
                     </fieldset>
                     <button class="text-button text-small" type="submit" action="{% url 'borrow'%}">Return</button>
                 </form>
             </td>
-            {% elif item.get_status_display == "Unavailable" %}
+            {% elif book.get_status_display == "Unavailable" %}
                 <td colspan="2"><p class="unavailable">This book cannot be borrowed.</p></td>
             {% else %}
                 <td colspan="2"></td>

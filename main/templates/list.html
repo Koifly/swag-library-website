@@ -5,6 +5,7 @@
 
 {% block container %}list{% endblock %}
 
+{% load lib_tags %}
 {% block content %}
     <div class="main">
         <div class="text-container">
@@ -21,33 +22,26 @@
                 </tr>
                 {% if list %}
                     {% for item in list %}
-                        <tr id="row_{{ item.id }}" class="collapsed-row">
-                            <td>{{ item.title }}</td>
-                            <td>{{ item.author }}</td>
-                            {% if item.booktype.booktype == "Series" %}
+                        {% if item|get_value:'isSeries' == False %}
+                            {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}
+                        {% else %}
+                            <tr id="row_{{ forloop.counter }}" class="collapsed-row sublist">
+                                <td>{{ item|get_value:'name' }}</td>
+                                <td>{{ item|get_value:'author' }}</td>
                                 <td>-</td>
-                            {% else %}
-                                <td>{{ item.get_status_display }}</td>
-                            {% endif %}
-                            <td>{{ item.get_owner_display }}</td>
-                            <td>
-                                <button class="iconbtn iconbtn-small action" expanded="false" id="{{ item.id }}" onclick="toggle(this.id)"><i class="fa black fa-angle-up" id="icon_{{ item.id }}"></i></button>
-                            </td>
-                            <tr class="hidden-info expanded-row" id="blurb_{{ item.id }}">
-                                {% if item.blurb %}
-                                    <td class="long-text" colspan="2">{{ item.blurb }}</td>
-                                {% else %}
-                                    <td colspan="2">-</td>
-                                {% endif %}
-                                <td colspan="3"></td>
-                            </tr>
-                            <tr class="hidden-info expanded-row" id="tags_{{ item.id }}">
-                                <td class="tags" colspan="5">
-                                    Tags: {% for tag in item.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                <td>{{ item|get_value:'owner' }}</td>
+                                <td>
+                                    <button class="iconbtn iconbtn-small action" expanded="false" id="{{ forloop.counter }}" onclick="toggle_series(this.id)"><i class="fa black fa-angle-up" id="icon_{{ forloop.counter }}"></i></button>
                                 </td>
                             </tr>
-                            {% include "list_actions.html" %}
-                        </tr>
+                            <tr class="hidden-info sublist" id="books_{{ forloop.counter }}">
+                                <td colspan="5">
+                                <table class="list-table">
+                                    {% for book in item|get_value:'seriesBooks' %} {% include "book_item.html" %} {% endfor %}
+                                </table>
+                                </td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 {% else %}
                    <tr>

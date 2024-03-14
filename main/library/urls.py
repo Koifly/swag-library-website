@@ -5,6 +5,7 @@ urlpatterns = [
     path("", views.home, name="home"),
 
     path("new-genre", views.add_genre),
+    path("new-series", views.add_series),
 
     path("book", views.book_form),
     path("book/edit-id:<slug:book>", views.book_form),

@@ -22,14 +22,13 @@ load_dotenv()
 # UPDATE secret key
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
 # DEV
-# ALLOWED_HOSTS = ['*']
+DEBUG = True
+ALLOWED_HOSTS = ['*']
 
 # PROD
-ALLOWED_HOSTS = ['tauthereal.pythonanywhere.com']
+# DEBUG = False
+# ALLOWED_HOSTS = ['tauthereal.pythonanywhere.com']
 
 
 # Application definition
