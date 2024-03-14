@@ -52,7 +52,7 @@ def get_book_list(booktype, genre, user):
         else:
             if name not in doneSeries:
                 doneSeries.append(name)
-                books_in_series = all_books.filter(series__name=name)
+                books_in_series = all_books.filter(series__name=name).order_by('volume')
                 author = get_series_author(books_in_series)
                 owner = get_series_owner(books_in_series)
                 clean_list.append(
